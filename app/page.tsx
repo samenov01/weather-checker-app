@@ -36,7 +36,7 @@ export default function WeatherSearch() {
 
   return (
     <main className='main font-inter'>
-      <p style={{fontSize: '3rem',fontWeight: '900', paddingBottom: '20px'}}>weather checker app</p>
+      <p style={{fontSize: '3rem',fontWeight: '900', paddingBottom: '20px'}}>Посмотреть погоду</p>
       
       <form onSubmit={fetchWeather} className='weather-form'>
         <div className="input-form">
