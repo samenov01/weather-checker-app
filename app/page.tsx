@@ -1,6 +1,7 @@
-"use client";
+﻿'use client';
 
 import { useState } from 'react';
+import { googleIconsMap } from './src/utils/weatherMapping';
 import './mainPage.css'
 
 export default function WeatherSearch() {
@@ -34,8 +35,8 @@ export default function WeatherSearch() {
   };
 
   return (
-    <main className='main'>
-      <h1>Weather Checker App</h1>
+    <main className='main font-inter'>
+      <p style={{fontSize: '3rem',fontWeight: '900', paddingBottom: '20px'}}>weather checker app.</p>
       
       <form onSubmit={fetchWeather} className='weather-form'>
         <input
@@ -47,22 +48,47 @@ export default function WeatherSearch() {
         <button 
           type="submit" 
           disabled={loading}
+          className={'button-center'}
         >
-          {loading ? 'Ищем...' : 'Искать'}
+        {loading ? 
+          <div className='svg-icons'>
+            <img src="https://seekicon.com/free-icon-download/loading-3-quarters_1.svg" alt="loading" className='loading-icon svg-icons'/>
+          </div>
+        :
+          <div className='svg-icons'>
+            <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+          </div>
+        }
+        
         </button>
       </form>
 
+      {weatherData && (console.log(weatherData))}
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {weatherData && (
-        <div className='weather-data'>
-          <h2>{weatherData.name}, {weatherData.sys.country}</h2>
-          <p><strong>Температура:</strong> {Math.round(weatherData.main.temp)}°C</p>
-          <p><strong>Ощущается как:</strong> {Math.round(weatherData.main.feels_like)}°C</p>
-          <p><strong>Состояние:</strong> {weatherData.weather[0].description}</p>
-          <p><strong>Влажность:</strong> {weatherData.main.humidity}%</p>
-          <p><strong>Ветер:</strong> {weatherData.wind.speed} м/с</p>
+        <div className='information'>
+          <div className='weather-data'>
+            <div className='weather-icon'>
+              {weatherData.weather[0].icon && (
+                <img 
+                  src={`${googleIconsMap[weatherData.weather[0].icon as keyof typeof googleIconsMap]}`} 
+                  alt="Weather icon" 
+                  width='60px'
+                />
+              )}
+            </div>
+            <div className='weather-temp'>
+              <span className='weather-temp-value'>{Math.round(weatherData.main.temp)}</span>
+              <span className='weather-temp-unit'>°C</span>
+            </div>
+            <div className='weather-info'>
+              <p className='info-p'>Влажность: {weatherData.main.humidity}%</p>
+              <p className='info-p'>Ветер: {weatherData.wind.speed} м/с</p>
+              <p className='info-p'>Состояние: {weatherData.weather[0].description}</p>
+            </div>
+          </div>
         </div>
       )}
     </main>
