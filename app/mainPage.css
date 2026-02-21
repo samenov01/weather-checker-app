@@ -1,4 +1,14 @@
 ﻿@import "tailwindcss";
+
+@keyframes loadingAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .div {
     display: block;
     unicode-bidi: isolate;
@@ -30,6 +40,21 @@
     margin-bottom: 20px;
 }
 
+.information {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.input-form{
+    display: flex;
+    background: #fff;
+    border: 1px solid #dadce0;
+    box-shadow: 0px 3px 10px 0px rgba(31, 31, 31, 0.08);
+    border-radius: 26px;
+}
+
 .weather-form {
     display: flex;
     gap: 4px;
@@ -39,10 +64,6 @@
 .weather-form input {
     padding: 15px 20px;
     flex: 1;
-    background: #fff;
-    border: 1px solid #dadce0;
-    box-shadow: 0px 3px 10px 0px rgba(31, 31, 31, 0.08);
-    border-radius: 26px;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -52,17 +73,13 @@
 }
 
 .weather-form button {
-    width: 56px;
-    height: 56px;
+    width: 54px;
+    height: 54px;
     flex: 1;
-    border: 1px solid #0070f3;
-    box-shadow: 0px 3px 10px 0px rgba(31, 31, 31, 0.08);
-    border-radius: 50%;
     margin: 0 auto;
     box-sizing: border-box;
     padding: 10px;
-    background: #0070f3;
-    color: white;
+    color: black;
     cursor: pointer;
 }
 
@@ -70,11 +87,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.information {
-    display: inline-block;
-    width: 50%;
 }
 
 .weather-data {
@@ -111,15 +123,28 @@
     height: 50px;
 }
 
-@keyframes loadingAnimation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .loading-icon {
     animation: loadingAnimation 1s linear infinite;
+}
+
+.other-info {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.about {
+    text-align: right;
+}
+
+.about-text-main {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;}
+
+.about-text-small {
+    color: #555;
+}
+
+.about-text-main, .about-text-small {
+    line-height: 26px;
 }
